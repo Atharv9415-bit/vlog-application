@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%-include("./partials/head") %>
+    <%- include("./partials/head") %>
     <title>homepage</title>
 </head>
 <body>
-    <%-include("./partials/nav") %>
-    <%=JSON.stringify(user) %>
+    <%- include("./partials/nav") %>
+    <%= JSON.stringify(user) %>
+
     <div class="container mt-3 row row-cols-4">
-        <% blogs.forEach(blog => { %>
+        <% if (blogs && blogs.length) { %>
+          <% blogs.forEach(blog => { %>
             <div class="col">
-            <div class="card col" style="width: 18rem;">
+              <div class="card col" style="width: 18rem;">
                 <p>Image URL: <%= blog.coverImageURL %></p>
-                <img src="<%=blog.coverImageURL %>" class="card-img-top">
+                <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="Blog Image">
                 <div class="card-body">
-                  <h5 class="card-title"><%=blog.title%></h5>
-                  <a href="http://localhost:<%= PORT %>/blog/<%= blog._id %>" class="btn btn-primary">View</a>
-                  </div>
+                  <h5 class="card-title"><%= blog.title %></h5>
+                  <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
                 </div>
               </div>
-         
-        <% }) %>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>No blogs found.</p>
+        <% } %>
     </div>
 
-    <%-include("./partials/scripts") %>
-
+    <%- include("./partials/scripts") %>
 </body>
 </html>
