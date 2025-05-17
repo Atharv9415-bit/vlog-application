@@ -2,7 +2,7 @@ require('dotenv').config();
 const express=require("express");
 const app=express();
 const path=require("path");
-const PORT=process.env.PORT ||8000;
+const port=process.env.PORT ||8000;
 const userRoutes=require("./routes/userRoutes");
 const blogRoutes=require("./routes/blogRoutes");
 const Blog=require("./models/blogModel");
@@ -15,7 +15,6 @@ connectMongoDB(process.env.MONGO_URL)
     console.error("MongoDB connection error:", error);
     process.exit(1); // Exit the app if DB fails
   });
-
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 app.use(express.urlencoded({extended:false}));
