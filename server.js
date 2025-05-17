@@ -28,9 +28,9 @@ app.get("/",async(req,res)=>{
     res.render("home",{
         user:req.user,
         blogs:allBlogs,
-        PORT:PORT,
+        PORT:port,
 
     });
 });
 
-app.listen(PORT,()=>console.log(`server started at http://localhost:${PORT}/user/signUp`));
+app.listen(port,()=>console.log(`server started at http://localhost:${port}/user/signUp`));
